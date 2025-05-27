@@ -10,12 +10,12 @@ room
  <div class="left-container">
   <div id="rooms-list">
     <ul class="room-box">
-    <!-- 
-    {% for room in rooms %}
-    <li>{{ room.name }}</li>
-    {% endfor %}
-    -->
-  
+      
+    
+      <li>{{ room_name }}</li>
+     
+      
+    <!--
     <li class = "room-item-wrapper">
       <div class = "room-item">room1</div>
       <img class ="room-delete-icon" src="../static/img/trash.png" alt ="">
@@ -40,7 +40,7 @@ room
       <form action="{{ url_for('room_create') }}" method="POST">
         <input type="image" src="../static/img/create_room.png" alt="" class="room-create-icon">
       </form>
-      
+    -->
     </ul>
   </div>
  </div>
@@ -56,7 +56,26 @@ room
        <input type="image" src="../static/img/chat-icon.png" alt="" class="chat-icon">
       </form>
       </div>
+
     <div class="messages-wrapper">
+      <div class="message-area">
+        <p class="box-right">This is my message</p>
+        <div id="navArea">
+          <div class="toggle-btn">
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+          <nav>
+              <div class="menu">
+                  <ul>
+                      <li><a href="#">編集</a></li>
+                      <li><a href="#">翻訳</a></li>
+                      <li><a href="#">削除</a></li>
+                  </ul>
+              </div>
+          </nav>
+        </div>
         <div class="typing-box-wrapper">
           <form action="{{url_for('room_create')}}" method="POST">
             <div class="message-input">
@@ -77,4 +96,10 @@ room
     </div>
   </div>
  </div>
+{% endblock %}{% block script %}
+
+<script
+  src="{{url_for('static',filename='js/channels/app.js')}}"
+></script>
+
 {% endblock %}
