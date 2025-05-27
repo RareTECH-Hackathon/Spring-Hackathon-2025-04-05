@@ -113,10 +113,11 @@ def home_page():
     room_name = []
     room_id = []
     member_id = []
+    messages = []
     if user_id is None:
         return redirect(url_for('login_page'))
     else:
-        my_list = Room.get_all(user_id)   # room_id,room_name,owner_id一覧情報を昇順で取得
+        my_list = Room.get_all(user_id)   # room_id,room_name,owner_id一覧情報を降順で取得
         
         # ルーム名、ルームid、メンバーidをそれぞれ取得
         for itm in my_list:
@@ -132,13 +133,14 @@ def home_page():
             messages = Message.get_all(room_id[0])
             print(f'message：{messages}')
         # html側でlist型で扱えるよう、room名一覧をmy_rooms、message一覧をmessagesの変数で利用できるようにレンダリング
-        return render_template('room.html', room_name=room_name, messages=messages)
+        return render_template('room.html',room_id=room_id, room_name=room_name, messages=messages)
 
 # チャットルーム作成画面表示
 # 一時的に画面遷移のため<cid>なし
 # @app.route('/room/create/<cid>', methods=['GET'])
 @app.route('/room/create', methods=['GET'])
 def room_create_page():
+
     return render_template('room_create.html')
 
 
