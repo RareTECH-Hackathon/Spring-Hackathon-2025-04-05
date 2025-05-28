@@ -130,13 +130,13 @@ def home_page():
             room_name .append(itm['room_name'])
             room_id .append(itm['room_id'])
             member_id.append(itm['room_member_id'])
-
+        room_title = room_name[0] 
         # 本番では削除
         if member_id:
             messages = Message.get_all(room_id[0])
             print(f'message：{messages}')
         # フロント側でlist型で扱えるよう、room名一覧をmy_rooms、message一覧をmessagesの変数で利用できるようにレンダリング
-        return render_template('room.html',room_id=room_id, room_name=room_name, messages=messages)
+        return render_template('room.html',room_id=room_id, room_name=room_name, messages=messages, room_title=room_title, member_id=member_id)
     
 
 # チャットルーム作成画面表示
@@ -174,7 +174,7 @@ def room_create():
             room_id = Room.create(user_id,new_room_name)
             # 作成後は、作成したルームへ移動
             print(f'room_id：{room_id}')
-            return redirect(url_for('home_page',room_id=room_id))
+            return redirect(url_for('home_page', room_id=room_id))
 
     return redirect(url_for('room_create_page'))
     
