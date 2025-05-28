@@ -11,9 +11,9 @@ room
   <div id="rooms-list">
     <ul class="room-box">
       
-    
-      <li>{{ room_name }}</li>
-     
+      { % for room in room_name % }
+      <li>{{ room }}</li>
+      { % endfor % }
       
     <!--
     <li class = "room-item-wrapper">
@@ -86,7 +86,7 @@ room
               />
             </div>
           </form>
-            <form action="{{ url_for('room_create') }}" method="POST">
+            <form action="{{ url_for('room_create_page') }}" method="GET">
               <input type="image" src="../static/img/clip.png" alt="" class="clip-icon">
             </form>
             <form action="{{ url_for('room_create') }}" method="POST">
