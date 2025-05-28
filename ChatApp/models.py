@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 from flask import abort  # HTTPステータスコードをクライアント側へ表示させるライブラリ
 import pymysql          # SQL操作のライブラリ
 from util.DB import DB  # 作成したDBファイルをimport
@@ -391,6 +392,8 @@ class File:
         finally:
             db_pool.release(conn)
 =======
+=======
+>>>>>>> c9cd171dfeebc393b6176e2087e8a468560b9994
 from flask import abort
 import pymysql
 from util.DB import DB
@@ -699,4 +702,7 @@ class Message:
             abort(500)
         finally:
             db_pool.release(conn)
+<<<<<<< HEAD
+>>>>>>> c9cd171dfeebc393b6176e2087e8a468560b9994
+=======
 >>>>>>> c9cd171dfeebc393b6176e2087e8a468560b9994
