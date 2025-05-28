@@ -217,25 +217,51 @@ def room_page(cid):
 #------------------------------メッセージ関連--------------------------------------
 # メッセージ送信処理
 @app.route('/room/<cid>/message', methods=['POST'])
-def message_create():
+def message_create(room_id):
+    user_id = session.get('user_id')
+    if user_id is None:
+        return redirect(url_for('login_page'))
+
+    message = request.form.get('message')
+
+    if message:
+        Message.create(user_id, room_id, message)
     pass
 
 
 # メッセージ編集処理
-@app.route('/room/<cid>/message/<message_id>', methods=['POST'])
-def message_update():
+@app.route('/room/<cid>/message/<message_id>/update', methods=['POST'])
+def message_update(message_id):
+    user_id = session.get('user_id')
+    if user_id is None:
+        return redirect(url_for('login_page'))
+
+    message = request.form.get('message')
+
+    if message:
+        Message.update(message_id, message)
     pass
 
 
 # メッセージ削除処理
 @app.route('/room/<cid>/message/<message_id>', methods=['POST'])
-def message_delete():
+def message_delete(message_id):
+    user_id = session.get('user_id')
+    if user_id is None:
+        return redirect(url_for('login_page'))
+
+    Message.delete(message_id)
     pass
 
 
 # メッセージ翻訳処理
-@app.route('/room/<cid>/message/<message_id>', methods=['POST'])
-def message_translation():
+@app.route('/room/<cid>/message/translation', methods=['POST'])
+def message_translation(message_id, translated_message):
+    user_id = session.get('user_id')
+    if user_id is None:
+        return redirect(url_for('login_page'))
+
+    Message.translate(message_id, translated_message)
     pass
 
 
