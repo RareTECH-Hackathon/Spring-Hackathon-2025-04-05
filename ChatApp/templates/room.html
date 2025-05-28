@@ -11,9 +11,12 @@ room
   <div id="rooms-list">
     <ul class="room-box">
       
-      { % for room in room_name % }
-      <li>{{ room }}</li>
-      { % endfor % }
+      {% for room in room_name %}
+        <li>{{ room }}</li>
+        <input 
+        type="hidden"
+        >
+      {% endfor %}
       
     <!--
     <li class = "room-item-wrapper">
