@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # DB.pyが実行される時、初期化処理で、以下の設定が実行される
 import os
 import pymysql
@@ -28,32 +27,3 @@ class DB:
        # コネクションプールの初期化
        pool.init()
        return pool
-=======
-import os
-import pymysql
-from pymysqlpool.pool import Pool
-
-
-class DB:
-    @classmethod
-    def init_db_pool(cls):
-        pool = Pool(
-            # データベースホスト
-            host=os.getenv('DB_HOST'),
-            # データベースユーザー
-            user=os.getenv('DB_USER'),
-            # データベースパスワード
-            password=os.getenv('DB_PASSWORD'),
-            # データベース名
-            database=os.getenv('DB_DATABASE'),
-            # 最大コネクション数
-            max_size=5,
-            # 文字コード
-            charset="utf8mb4",
-            # カーソルクラス（辞書型でフェッチ）
-            cursorclass=pymysql.cursors.DictCursor
-        )
-        # コネクションプールの初期化
-        pool.init()
-        return pool
->>>>>>> c9cd171dfeebc393b6176e2087e8a468560b9994
