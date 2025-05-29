@@ -12,10 +12,15 @@ room
     <ul class="room-box">
       
       {% for room in room_name %}
-        <li>{{ room }}</li>
-        <input 
-        type="hidden"
-        >
+        <li class="room-item-wrapper">
+          {{ room }}
+          <img class ="room-delete-icon" src="../static/img/trash.png" alt ="">
+          <input 
+          type="hidden"
+          name="cid"
+          value="{{ room }}"
+          >
+        </li>
       {% endfor %}
       
     <!--
@@ -38,12 +43,12 @@ room
       <div class = "room-item">room4</div>
       <img class ="room-delete-icon" src="../static/img/trash.png" alt ="">
     </li>
-
+        -->
     <li class="room-item-wrapper">
-      <form action="{{ url_for('room_create') }}" method="POST">
+      <form action="{{ url_for('room_create_page') }}" method="GET">
         <input type="image" src="../static/img/create_room.png" alt="" class="room-create-icon">
       </form>
-    -->
+
     </ul>
   </div>
  </div>
@@ -61,41 +66,50 @@ room
       </div>
 
     <div class="messages-wrapper">
-      <div class="message-area">
-        <p class="box-right">This is my message</p>
-        <div id="navArea">
-          <div class="toggle-btn">
-              <span></span>
-              <span></span>
-              <span></span>
+      <div class="my-messages">
+          
+        <div class="message-area">
+          <div class="message-content">
+            <p class="box-right">This is my message </p>
           </div>
-          <nav>
-              <div class="menu">
-                  <ul>
-                      <li><a href="#">編集</a></li>
-                      <li><a href="#">翻訳</a></li>
-                      <li><a href="#">削除</a></li>
-                  </ul>
-              </div>
-          </nav>
-        </div>
-        <div class="typing-box-wrapper">
-          <form action="{{url_for('room_create')}}" method="POST">
-            <div class="message-input">
-              <input class="message-input-box"
-              type="message"
-              name="message"
-              id="message"
-              />
+          <div id="navArea">
+            <input type="image" src="../static/img/option.png" alt="" class="toggle-btn">
+            <!-- <div class="toggle-btn">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-          </form>
-            <form action="{{ url_for('room_create_page') }}" method="GET">
-              <input type="image" src="../static/img/clip.png" alt="" class="clip-icon">
-            </form>
-            <form action="{{ url_for('room_create') }}" method="POST">
-              <input type="image" src="../static/img/send.png" alt="" class="send-icon">
-            </form>
+            -->
+            <nav>
+                <div class="menu">
+                    <ul>
+                        <li><a href="#">編集</a></li>
+                        <li><a href="#">翻訳</a></li>
+                        <li><a href="#">削除</a></li>
+                    </ul>
+                </div>
+            </nav>
+          </div>
         </div>
+      </div>
+      
+      <div class="typing-box-wrapper">
+        <form action="{{url_for('room_create')}}" method="POST">
+          <div class="message-input">
+            <input class="message-input-box"
+            type="message"
+            name="message"
+            id="message"
+            />
+          </div>
+        </form>
+          <form action="{{ url_for('room_create_page') }}" method="GET">
+            <input type="image" src="../static/img/clip.png" alt="" class="clip-icon">
+          </form>
+          <form action="{{ url_for('room_create') }}" method="POST">
+            <input type="image" src="../static/img/send.png" alt="" class="send-icon">
+          </form>
+      </div>
     </div>
   </div>
  </div>
