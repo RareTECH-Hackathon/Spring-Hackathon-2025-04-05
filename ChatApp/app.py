@@ -74,9 +74,6 @@ def logout():
 # サインアップ画面表示
 @app.route('/signup',methods=['GET'])
 def signup_page():
-    user_id = session.get('user_id')
-    if user_id is None:
-        return redirect(url_for('login_page'))  # ←セッションがない場合login_page関数からログイン画面に戻る
     return render_template('auth/signup.html')
 
 
