@@ -204,11 +204,14 @@ def room_update_page():
 
 # チャットルーム削除処理
 @app.route('/room/delete', methods=['POST'])
-def room_delete(room_id):
+def room_delete():
     user_id = session.get('user_id')
     if user_id is None:
         return redirect(url_for('login_page'))
-
+    
+    my_list = Room.get_all(user_id)
+    room_id = my_list[0]['room_id']
+    print(f'------------------------------------{room_id}')
     Room.delete(room_id)
     rooms = Room.find_by_id(room_id)
     if rooms is None:
@@ -231,7 +234,6 @@ def room_page():
 # メッセージ送信処理
 @app.route('/room/message', methods=['POST'])
 def message_create():
-    print(f'-------開始------')
     user_id = session.get('user_id')
     if user_id is None:
         return redirect(url_for('login_page'))
@@ -242,7 +244,6 @@ def message_create():
     if message != '':
         Message.create(user_id, room_id, message)
     return redirect(url_for('home_page'))
-    
 
 
 # メッセージ編集処理
